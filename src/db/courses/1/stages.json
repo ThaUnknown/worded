@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Introductions",
+    "description": "You will learn introductions in this stage."
+  },
+  {
+    "id": 2,
+    "name": "Formality",
+    "description": "You will learn formality in this stage."
+  }
+]
