@@ -16,7 +16,7 @@
     if (s) relations[course] = s.id;
   }
 
-  const stages = fetch(`/db/courses/${course}/stages.json`).then((res) => {
+  const stages = fetch(`./db/courses/${course}/stages.json`).then((res) => {
     return res.json();
   });
   $: loadById(stage);

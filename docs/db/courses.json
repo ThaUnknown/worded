@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "English Course",
+    "description": "Learn English from this course.",
+    "langs": "EN",
+    "stages": 2
+  },
+  {
+    "id": "2",
+    "name": "Czech Course",
+    "description": "Learn Czech from this course.",
+    "langs": "CZ",
+    "stages": 3
+  }
+]

@@ -4,7 +4,7 @@
   export let course;
   export let id;
   let length = 0;
-  const pages = fetch(`/db/courses/${course}/${id}.json`).then(async (res) => {
+  const pages = fetch(`./db/courses/${course}/${id}.json`).then(async (res) => {
     const json = await res.json();
     length = json.length;
     return json;
