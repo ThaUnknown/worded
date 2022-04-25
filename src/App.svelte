@@ -1,6 +1,6 @@
 <script>
 	import Course from './components/Course.svelte';
-	const courses = fetch('./db/courses.json').then((res) => {
+	const courses = fetch('./api/query/courses').then((res) => {
 		return res.json();
 	});
 	let relations = JSON.parse(localStorage.getItem('progress')) || {};
