@@ -18,7 +18,7 @@ export async function onRequestPost ({ next, request, env }) {
   const { auth } = await request.json()
 
   const encrypted = arrayBufferToHex(await encrypt(await env.WORDED.get('pepper', { type: 'text' }), auth))
-  console.log(encrypted)
+  // console.log(encrypted)
   if (!((await env.WORDED.get('users', { type: 'json' })).includes(encrypted))) return new Response('invalid user or password', { status: 401 })
 
   return next()

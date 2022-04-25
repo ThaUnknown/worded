@@ -33,7 +33,12 @@
 	<div class="sticky-alerts" />
 	<nav class="navbar bg-accent-dark px-20">
 		<!-- svelte-ignore a11y-missing-attribute -->
-		<a class="text-light pointer text-muted" on:click={() => (course = null)}>Home</a>
+		<a
+			class="text-light pointer text-muted"
+			on:click={() => {
+				course = null;
+				page = null;
+			}}>Home</a>
 		<!-- svelte-ignore a11y-missing-attribute -->
 		<a class="text-light pointer text-muted ml-auto" on:click={login}>{loginText}</a>
 	</nav>
