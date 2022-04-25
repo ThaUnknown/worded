@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "start": "concurrently \"npm run cloudflare:worker\" \"npm run vite:listen\"",
+    "cloudflare:worker": "npx wrangler pages dev ./dist --kv WORDED",
+    "vite:listen": "vite build --watch",
     "build": "vite build",
     "preview": "sirv docs --no-clear"
   },
@@ -16,6 +18,7 @@
     "sirv-cli": "^1.0.0",
     "svelte": "^3.44.2",
     "vite": "^2.7.1",
+    "concurrently": "^7.1.0",
     "wrangler": "^0.0.27"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 <script>
 	import Course from './components/Course.svelte';
-	const courses = fetch('./api/query/courses').then((res) => {
+	import Login from './components/Login.svelte';
+	const courses = fetch('/api/query/courses').then((res) => {
 		return res.json();
 	});
 	let relations = JSON.parse(localStorage.getItem('progress')) || {};
@@ -16,17 +17,32 @@
 	function saveRelations(relations) {
 		localStorage.setItem('progress', JSON.stringify(relations));
 	}
+	let loginText = 'Login';
+	let loginHash = null;
+	$: loggedIn(loginHash);
+	function loggedIn() {
+		page = null;
+	}
+	let page = null;
+	function login() {
+		if (loginHash === null) page = 'login';
+	}
 </script>
 
 <div class="page-wrapper with-navbar">
-	<nav class="navbar bg-accent-dark">
+	<div class="sticky-alerts" />
+	<nav class="navbar bg-accent-dark px-20">
 		<!-- svelte-ignore a11y-missing-attribute -->
 		<a class="text-light pointer text-muted" on:click={() => (course = null)}>Home</a>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<a class="text-light pointer text-muted ml-auto" on:click={login}>{loginText}</a>
 	</nav>
 	<div class="content-wrapper">
-		<div class="container-md">
+		<div class="container-md px-20">
 			{#if course != null}
 				<Course bind:relations bind:stage {course} />
+			{:else if page === 'login'}
+				<Login bind:loginHash bind:loginText />
 			{:else}
 				{#await courses}
 					Placeholder

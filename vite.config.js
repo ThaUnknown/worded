@@ -10,6 +10,9 @@ export default defineConfig({
     port: 5000
   },
   build: {
-    outDir: '../dist'
+    outDir: '../dist',
+    watch: {},
+    emptyOutDir: true,
+    sourcemap: true
   }
 })

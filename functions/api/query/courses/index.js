@@ -9,8 +9,6 @@ export async function onRequestGet ({ env }) {
   const courses = await Promise.all(coursepromises)
   const stages = await Promise.all(stagepromises)
 
-  console.log(courses, stages)
-
   for (let i = 0; i < stages.length; ++i) {
     courses[i].stages = stages[i].length
   }

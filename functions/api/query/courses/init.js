@@ -1,13 +1,14 @@
+// debug file for testing only
 export async function onRequestGet ({ env }) {
   env.WORDED.put('course:1', JSON.stringify({
-    id: '1',
+    id: 1,
     name: 'English Course',
     description: 'Learn English from this course.',
     langs: 'EN',
     stages: 2
   }))
   env.WORDED.put('course:2', JSON.stringify({
-    id: '2',
+    id: 2,
     name: 'Czech Course',
     description: 'Learn Czech from this course.',
     langs: 'CZ',
