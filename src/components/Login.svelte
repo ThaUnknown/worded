@@ -1,41 +1,43 @@
 <script>
+  import { getContext } from 'svelte'
+
   const encrypt = async (salt, text) => {
-    const buf = utf8ToUint8Array(`${salt}${text}`);
-    return crypto.subtle.digest('SHA-512', buf);
-  };
+    const buf = utf8ToUint8Array(`${salt}${text}`)
+    return crypto.subtle.digest('SHA-512', buf)
+  }
 
-  const utf8ToUint8Array = (input) => new TextEncoder().encode(input);
+  const utf8ToUint8Array = input => new TextEncoder().encode(input)
 
-  const arrayBufferToHex = (input) => {
-    input = new Uint8Array(input);
-    const output = [];
+  const arrayBufferToHex = input => {
+    input = new Uint8Array(input)
+    const output = []
     for (let i = 0; i < input.length; ++i) {
-      output.push(input[i].toString(16).padStart(2, '0'));
+      output.push(input[i].toString(16).padStart(2, '0'))
     }
-    return output.join('');
-  };
+    return output.join('')
+  }
 
-  export let loginHash;
-  export let loginText;
+  const loginHash = getContext('loginHash')
+  export let loginText
 
-  let username = null;
+  let username = null
 
-  let password = null;
+  let password = null
 
   async function attemptLogin() {
-    const auth = arrayBufferToHex(await encrypt(username, password));
-    const res = await fetch('/api/mutation', { method: 'POST', body: JSON.stringify({ auth }) });
-    const text = await res.text();
+    const auth = arrayBufferToHex(await encrypt(username, password))
+    const res = await fetch('/api/mutation', { method: 'POST', body: JSON.stringify({ auth }) })
+    const text = await res.text()
     if (text === 'ok') {
-      loginHash = auth;
-      loginText = username;
+      $loginHash = auth
+      loginText = username
     } else {
       halfmoon.initStickyAlert({
         content: 'Invalid username or password.',
         title: 'Error',
         alertType: 'alert-danger',
-        fillType: 'filled',
-      });
+        fillType: 'filled'
+      })
     }
   }
 </script>
